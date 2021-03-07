@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class CompaniesViewModel : ViewModel() {
-    // initialize mutable live data objects
+    // initialize mutable live data object
     val state: MutableLiveData<CompaniesState> = MutableLiveData()
 
     // get data for companies

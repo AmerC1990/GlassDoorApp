@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// https://raw.githubusercontent.com/vikrama/feed-json-sample/master/feed.json
+// create singelton retrofit object
 object ApiClient {
     // create retrofit
     var BASE_URL: String = "https://raw.githubusercontent.com/vikrama/"

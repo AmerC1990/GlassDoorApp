@@ -47,7 +47,7 @@ class CompaniesFragment : Fragment() {
         }
     }
 
-    // attach live data observers for restaurant data to populate recycler view
+    // attach live data observers for companies data to populate recycler view
     private fun attachObservers() {
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {

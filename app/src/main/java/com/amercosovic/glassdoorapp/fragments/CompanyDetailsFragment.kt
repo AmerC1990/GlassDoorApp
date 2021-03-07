@@ -28,9 +28,11 @@ class CompanyDetailsFragment : Fragment() {
         val companyDetailsTextview = inflater.findViewById<TextView>(R.id.companyDetailsTextview)
         val companyDetailsImageview = inflater.findViewById<ImageView>(R.id.companyDetailsImageview)
         companyDetailsTextview.setMovementMethod(ScrollingMovementMethod())
+        // get data
         val reviewData = arguments?.getParcelable<ReviewX>("reviewData")
         val salaryData = arguments?.getParcelable<Salary>("salaryData")
         val interviewData = arguments?.getParcelable<Interview>("interviewData")
+        // populate ui with data
         if (reviewData != null && reviewData.toString() != "null") {
             setCompanyImage(
                 reviewData.sqLogoUrl.toString().replace("[", "").replace("]", ""),
@@ -63,11 +65,13 @@ class CompanyDetailsFragment : Fragment() {
         return inflater
     }
 
+    // set up back button in action bar ( make visible)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    // override to implement fuctionality for back button in action bar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fragmentContainer, CompaniesFragment())
@@ -78,6 +82,7 @@ class CompanyDetailsFragment : Fragment() {
 
 }
 
+// set company image to imageview using glide
 private fun setCompanyImage(imageUrl: String, imageView: ImageView) {
     Glide.with(imageView)
         .load(imageUrl.toString().replace("[", "").replace("]", ""))

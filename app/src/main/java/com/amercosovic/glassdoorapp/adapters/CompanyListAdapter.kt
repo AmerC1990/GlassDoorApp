@@ -23,9 +23,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.single_company_row.view.*
 
 class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>() {
-    val companyDetailsFragment = CompanyDetailsFragment()
     var items: List<Result?> = ArrayList()
 
+    // used to populate data to be binded
     fun setListData(data: List<Result?>) {
         this.items = data
     }
@@ -46,11 +46,10 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
             companyData?.review?.employerName,
             companyData?.interview?.employerName, companyData?.salary?.employerName
         )
-//        for (employerName in nullableEmployerNames) {
+
         val nonNullName: List<String> =
             nullableEmployerNames.filterNotNull().filter { !it.contains("null") }
         holder.name.text = nonNullName.toString().replace("[", "").replace("]", "")
-//        }
 
         val nullableJobTitles: Array<String?> = arrayOf(
             companyData?.review?.jobTitle,
@@ -62,8 +61,6 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
         holder.jobTitle.text = nonNullJobTitle.toString().replace("[", "").replace("]", "")
 
         val salary = companyData?.salary?.basePay?.amount
-//            ?: "Salary not available"
-//            holder.salary.text = "$${salary}".substringBefore(".")
 
         if (salary != null || !salary.toString().contains("null")) {
             holder.salary.text = "$${salary}".substringBefore(".")
@@ -84,21 +81,6 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
             holder.review.visibility = View.GONE
         }
 
-
-//        if (companyData?.review?.employerName != null) {
-//            holder.name.text = companyData?.review?.employerName
-//        }
-//        else {
-//            if (companyData?.interview?.employerName != null) {
-//                holder.name.text = companyData?.interview?.employerName.toString()
-//            }
-//            else {
-//                if (companyData?.salary?.employerName != null) {
-//                    holder.name.text = companyData?.salary?.employerName
-//                }
-//            }
-//        }
-
         val nullableImageUrls: Array<String?> = arrayOf(
             companyData?.salary?.sqLogoUrl,
             companyData?.review?.sqLogoUrl, companyData?.interview?.sqLogoUrl
@@ -115,48 +97,18 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
             .error(R.drawable.defaultcompanyimage)
             .into(holder.companyImage)
 
-//        holder.review.text = companyData?.review?.overall
-//        if (companyData?.salary?.basePay != null) {
-//            holder.salary.text = companyData.salary.basePay.toString()
-//        } else if (companyData?.salary?.basePay == null) {
-//            holder.salary.text = "$$"
-//        }
-//        holder.salary.text = companyData?.review?.jobInformation?.toString()
-//
-//        holder.interview.text = companyData?.review?.featuredReview?.toString()
-
-//        Log.d("data", companyData.toString())
-//        holder.itemView.setOnClickListener {
-//            val intent = Intent(holder.itemView.context, RestaurantDetailsActivity::class.java)
-//            intent.putExtra("restaurantDataFromList", restaurantData)
-//            holder.itemView.context.startActivity(intent)
-//        }
         holder.itemView.setOnClickListener {
-//            val intent = Intent(holder.itemView.context, RestaurantDetailsActivity::class.java)
-//            intent.putExtra("restaurantDataFromList", restaurantData)
-//            holder.itemView.context.startActivity(intent)
-
-//            Log.d("clicked","name-  + ${holder?.name?.text}, salary - ${companyData?.salary?.basePay}, job title - ${companyData?.review?.jobTitle}, job review - ${holder?.review?.text}")
-//            Log.d("comp", companyData?.review?.compensationAndBenefitsRating.toString())
-//            Log.d("reviewInterviewSalary", "review- " + companyData?.review.toString()
-//                    + " ///interview -"
-//                    + companyData?.interview.toString() + " ///salary - "
-//                    + companyData?.salary.toString() )
-//            Log.d("interview object", companyData?.review.toString())
             if (overallNumericReview.toString().isNullOrEmpty()) {
                 Log.d("null", "null")
             }
             if (overallNumericReview.toString().contains("null")) {
                 Log.d("null", "nullString")
             }
-//            holder.itemView.setBackgroundColor(CologetResources().getColor(R.color.black))
             holder.itemView.setBackgroundColor(Color.parseColor("#E6D3E6"))
             var reviewData: ReviewX? = companyData?.review
             var salaryData: Salary? = companyData?.salary
             var interviewData: Interview? = companyData?.interview
-//            val data = reviewData ?: salaryData
-//            Log.d("holderdata", companyData?.interview.toString())
-//            passDataAndReplaceFragment(holder,companyData?.interview.toString())
+
             if (reviewData != null && !reviewData.toString().equals("null")) {
                 Log.d("reviewwwfuckyou", reviewData.toString())
                 passDataAndReplaceFragment(holder, reviewData)
@@ -168,13 +120,6 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
                 passDataAndReplaceFragment(holder, interviewData)
 
             }
-//            if (reviewData != null && !reviewData.toString().contains("null")) {
-//                passDataAndReplaceFragment(holder,reviewData)
-//            }
-//            if (salaryData != null && !salary.toString().contains("null")) {
-//                passDataAndReplaceFragment(holder,salaryData)
-//            }
-
         }
     }
 
