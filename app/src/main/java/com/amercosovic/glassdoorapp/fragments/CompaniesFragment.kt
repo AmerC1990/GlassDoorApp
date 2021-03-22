@@ -51,9 +51,6 @@ class CompaniesFragment : Fragment() {
     private fun attachObservers() {
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
-                is CompaniesState.Loading -> {
-
-                }
                 is CompaniesState.Success -> {
                     state.companies.response?.results?.let { recyclerViewAdapter.setListData(it) }
                     recyclerViewAdapter.notifyDataSetChanged()

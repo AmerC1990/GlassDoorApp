@@ -4,7 +4,6 @@ package com.amercosovic.glassdoorapp.adapters
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,25 +97,16 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
             .into(holder.companyImage)
 
         holder.itemView.setOnClickListener {
-            if (overallNumericReview.toString().isNullOrEmpty()) {
-                Log.d("null", "null")
-            }
-            if (overallNumericReview.toString().contains("null")) {
-                Log.d("null", "nullString")
-            }
             holder.itemView.setBackgroundColor(Color.parseColor("#E6D3E6"))
-            var reviewData: ReviewX? = companyData?.review
-            var salaryData: Salary? = companyData?.salary
-            var interviewData: Interview? = companyData?.interview
+            val reviewData: ReviewX? = companyData?.review
+            val salaryData: Salary? = companyData?.salary
+            val interviewData: Interview? = companyData?.interview
 
             if (reviewData != null && !reviewData.toString().equals("null")) {
-                Log.d("reviewwwfuckyou", reviewData.toString())
                 passDataAndReplaceFragment(holder, reviewData)
             } else if (salaryData != null && !salaryData.toString().equals("null")) {
-                Log.d("reviewwwfuckyou", salaryData.toString())
                 passDataAndReplaceFragment(holder, salaryData)
             } else if (interviewData != null && !interviewData.toString().equals("null")) {
-                Log.d("reviewwwfuckyou", interviewData.toString())
                 passDataAndReplaceFragment(holder, interviewData)
 
             }
@@ -136,16 +126,13 @@ class CompanyListAdapter : RecyclerView.Adapter<CompanyListAdapter.ViewHolder>()
         val bundle = Bundle()
         if (data is ReviewX) {
             bundle.putParcelable("reviewData", data)
-            Log.d("passed", data.toString())
         }
         if (data is Salary) {
             bundle.putParcelable("salaryData", data)
-            Log.d("passed", data.toString())
 
         }
         if (data is Interview) {
             bundle.putParcelable("interviewData", data)
-            Log.d("passed", data.toString())
 
         }
 

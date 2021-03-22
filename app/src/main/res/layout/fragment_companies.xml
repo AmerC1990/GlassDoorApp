@@ -7,6 +7,31 @@
     tools:context=".fragments.CompaniesFragment"
     android:id="@+id/companiesFragment">
 
+    <ProgressBar
+        android:id="@+id/CompaniesFragmentProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="206dp"
+        android:layout_marginBottom="-186dp"
+        android:backgroundTint="#000000"
+        android:duplicateParentState="false"
+        android:fadeScrollbars="true"
+        android:focusableInTouchMode="false"
+        android:indeterminate="true"
+        android:indeterminateTint="#F5CFF6"
+        android:paddingLeft="25dp"
+        android:paddingTop="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        android:secondaryProgressTint="#292626"
+        android:soundEffectsEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/companiesRecyclerView"
         android:layout_width="match_parent"
